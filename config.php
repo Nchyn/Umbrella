@@ -16,7 +16,7 @@ function sendmailto($mailto, $mailsub, $mailbd)
 {
     //require_once ('email.class.php');
     //##########################################
-    $smtpserver     = "smtp.ym.163.com"; //SMTP服务器
+    $smtpserver     = "smtp.ym.163.com"; //SMTP服务器,如果使用ssl,请加前缀ssl://
     $smtpserverport = 25; //SMTP服务器端口
     $smtpusermail   = "your@domain.com"; //SMTP服务器的用户邮箱
     $smtpemailto    = $mailto;
