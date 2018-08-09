@@ -30,10 +30,16 @@ $smtpuser       = "your@domain.com"; //SMTP服务器的用户帐号
 $smtppass       = "yourpassword"; //SMTP服务器的用户密码
 ```
 以上字段,如需调试请将
+
 `$smtp->debug    = false;`
 设为
 `$smtp->debug    = true;`
-如需使用ssl，请将`$smtpserver`添加`ssl://`,如：`$smtpserver     = "smtp.ym.163.com";`
+
+如需使用ssl，请将
+
+`$smtpserver`添加`ssl://`,
+
+如：`$smtpserver     = "smtp.ym.163.com";`
 ## 4.运行umbrellaV2.php
 您可以部署于WEB服务器或
 `php /home/umb/umbrellaV2.php`
