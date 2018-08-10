@@ -2,15 +2,19 @@
   "users":[ 
   {
     "location": "shanghai",
-    "usermail": "584121960@qq.com",
+    "usermail": "example@qq.com",
     "usersunflag": "true",
-    "userid": "Nchyn"
+    "userid": "Nchyn",
+    "usertemp": "true",
+	"usertime": "17"
   },
   {
     "location": "taiyuan",
-    "usermail": "mail@nchyn.com",
+    "usermail": "example@163.com",
     "usersunflag": "false",
-    "userid": "Nchyn2"
+    "userid": "Nchyn2",
+    "usertemp": "false",
+	"usertime": "16"
   }
   ]
 }

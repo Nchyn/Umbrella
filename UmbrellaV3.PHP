@@ -18,12 +18,14 @@ foreach ($userarr['users'] as $userkey => $userval) { //遍历用户json生成�
     $usermail = ($userval['usermail']);
     $userid = ($userval['userid']);
     $usersunflag = ($userval['usersunflag']);
-    echo ($usersunflag);
+    $usertime = ($userval['usertime']);
+    $usertemp = ($userval['usertemp']);
     $jsonadd = "https://free-api.heweather.com/s6/weather/forecast?location={$location}&key={$Hekey}"; //json地址
     $weatherjson = file_get_contents($jsonadd);
     $weatherarr = json_decode($weatherjson, TRUE);
     $usercity = ($weatherarr['HeWeather6']['0']['basic']['location']);
     $weathertime = ($weatherarr['HeWeather6']['0']['update']['loc']);
+	if ($usertime == date('H')){
     foreach ($weatherarr['HeWeather6'][0]['daily_forecast'] as $weatherkey => $weatherval) { //确定城市后循环遍历天气数据
         $data[] = "日期：" . $weatherval['date'];
         $txt_d[] = "{$weatherval['cond_txt_d']}";
@@ -216,7 +218,8 @@ LABELSS;
     $txt_n = "";
     $winds = "";
     $tmps = "";
-    //print_r($mailstr);//web预览邮件样式
+    print_r($mailstr);//web预览邮件样式
+	}
 }
 ?>
 

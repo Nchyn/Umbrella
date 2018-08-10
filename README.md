@@ -1,7 +1,7 @@
 # Umbrella  
 一个PHP的小程序，可以设置定时发送邮件提醒带伞
 
-当前版本：Ver.3,已实现的功能有：多用户，可选雨天单独推送
+当前版本：Ver.3,已实现的功能有：多用户，可以控制的推送时间选择，可选雨天单独推送
 
 在 https://console.heweather.com/ 申请好KEY后
 
@@ -47,7 +47,8 @@ $smtppass       = "yourpassword"; //SMTP服务器的用户密码
 您可以部署于WEB服务器或
 `php /home/umb/umbrellaV3.php`
 直接运行
-亦可设置crontab做定时任务
+
+亦可设置crontab做定时任务，自V3.1.0后，建议设置为每小时一次的定时任务或自动访问url。
 
 ~~喜欢请star,虽然我知道我只是写了一坨shit~~
 
