@@ -17,9 +17,10 @@ foreach ($userarr['users'] as $userkey => $userval) { //遍历用户json生成�
     $location = ($userval['location']);
     $usermail = ($userval['usermail']);
     $userid = ($userval['userid']);
-    $usersunflag = ($userval['usersunflag']);
+    $usersunflag = ($userval['usersunflag']);//非雨天也发邮件(不设置天气过滤)将config中usersunflag设为true
     $usertime = ($userval['usertime']);
-    $usertemp = ($userval['usertemp']);
+	$usertempflag = ($userval['usertempflag']);
+    //$usertempflag = ($userval['usertempflag']);//高温预警设置，将config中usertempflag设为true,温度高于36度时推送邮件
     $jsonadd = "https://free-api.heweather.com/s6/weather/forecast?location={$location}&key={$Hekey}"; //json地址
     $weatherjson = file_get_contents($jsonadd);
     $weatherarr = json_decode($weatherjson, TRUE);
@@ -50,7 +51,7 @@ foreach ($userarr['users'] as $userkey => $userval) { //遍历用户json生成�
     };
     if (strstr($weather0, "雨")) {
         $tips = "需要带伞"; //带伞通知
-        $subject = "今天会下雨哦"; //邮件主题
+        $subject = "今天会下雨哦~"; //邮件主题
         
     } else {
         $tips = "不需要带伞";
@@ -59,6 +60,14 @@ foreach ($userarr['users'] as $userkey => $userval) { //遍历用户json生成�
     $weather0 = $weather0 . "," . $winds[0] . "," . $tmps[0]; //整合天气数据
     $weather1 = $weather1 . "," . $winds[1] . "," . $tmps[1];
     $weather2 = $weather2 . "," . $winds[2] . "," . $tmps[2];
+	$d0maxtemp = ($weatherarr['HeWeather6'][0]['daily_forecast'][0]['tmp_max']);
+	//echo $d0maxtemp;
+	if($d0maxtemp > 36){
+		if($usertempflag == 'true'){
+		$subject = $subject."还贼热";
+		$usersunflag = "true";
+		}
+	}
     //邮件部分
     $mailstr = <<<LABELSS
 <style type="text/css">
@@ -205,12 +214,14 @@ LABELSS;
     if (strstr($weather0, "雨")) { //判断天气情况，发送邮件
         $mailto = $usermail; //收件人
         $body = $mailstr; //邮件内容
-        sendmailto($mailto, $subject, $body);
+		    print_r($mailstr);//web预览邮件样式
+        //sendmailto($mailto, $subject, $body);
     } else {
         if ($usersunflag == 'true') {
             $mailto = $usermail;
             $body = $mailstr;
-            sendmailto($mailto, $subject, $body);
+			    print_r($mailstr);//web预览邮件样式
+            //sendmailto($mailto, $subject, $body);
         }
     };
     $data = ""; //初始化天气数据
@@ -218,7 +229,7 @@ LABELSS;
     $txt_n = "";
     $winds = "";
     $tmps = "";
-    print_r($mailstr);//web预览邮件样式
+
 	}
 }
 ?>
