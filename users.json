@@ -1,0 +1,16 @@
+{
+  "users":[ 
+  {
+    "location": "shanghai",
+    "usermail": "584121960@qq.com",
+    "usersunflag": "true",
+    "userid": "Nchyn"
+  },
+  {
+    "location": "taiyuan",
+    "usermail": "mail@nchyn.com",
+    "usersunflag": "false",
+    "userid": "Nchyn2"
+  }
+  ]
+}
